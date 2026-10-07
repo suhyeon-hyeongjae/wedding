@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>수현 ♥ 형재 결혼합니다</title>
+<title>수현 ♡ 형재 결혼합니다</title>
 <meta name="description" content="2027년 1월 23일 토요일 오전 11시 KU컨벤션웨딩홀">
-<meta property="og:title" content="수현 ♥ 형재 결혼합니다">
+<meta property="og:title" content="수현 ♡ 형재 결혼합니다">
 <meta property="og:description" content="2027년 1월 23일 토요일 오전 11시 KU컨벤션웨딩홀">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://suhyeon-hyeongjae.github.io/wedding/design2/">
-<meta property="og:image" content="https://suhyeon-hyeongjae.github.io/wedding/design2/assets/og.jpg">
+<meta property="og:image" content="https://suhyeon-hyeongjae.github.io/wedding/design2/assets/og-photo.jpg">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
+<meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -547,25 +547,25 @@ const CONFIG = {
   // 연락처 — phone 이 비어 있으면 전화·문자 버튼이 비활성화됩니다 (예: '010-1234-5678')
   contacts: {
     groom: [
-      { role: '신랑', name: '이수현', phone: '' },
-      { role: '신랑 아버지', name: '이철근', phone: '' },
-      { role: '신랑 어머니', name: '김경자', phone: '' }
+      { role: '신랑', name: '이수현', phone: '010-2721-3354' },
+      { role: '신랑 아버지', name: '이철근', phone: '010-5214-1328' },
+      { role: '신랑 어머니', name: '김경자', phone: '010-2963-3354' }
     ],
     bride: [
-      { role: '신부', name: '임형재', phone: '' },
-      { role: '신부 아버지', name: '임채홍', phone: '' },
-      { role: '신부 어머니', name: '문우심', phone: '' }
+      { role: '신부', name: '임형재', phone: '010-3262-7295' },
+      { role: '신부 아버지', name: '임채홍', phone: '010-3161-5835' },
+      { role: '신부 어머니', name: '문우심', phone: '010-8233-5835' }
     ]
   },
   appsScriptUrl: 'https://script.google.com/macros/s/AKfycbzdHIu7UEsHgXWVeXcvLwtnFslQOxray3qZIOHFvrJQepfmxT0u24lAVc37htIRD-d6DA/exec',   // 참석의사 · 사진 · 방명록 저장 주소 (Code.gs 웹 앱)
   accounts: {
     groom: [
-      { holder: '이수현', bank: '국민', number: '' },
+      { holder: '이수현', bank: '신한', number: '110-427-145440' },
       { holder: '이철근', bank: 'SC제일', number: '779-20-300008' },
       { holder: '김경자', bank: '농협', number: '82103252-018811' }
     ],
     bride: [
-      { holder: '임형재', bank: '우리', number: '' },
+      { holder: '임형재', bank: '하나', number: '133-910505-41307' },
       { holder: '임채홍', bank: '국민', number: '557301-04-305024' },
       { holder: '문우심', bank: '하나', number: '717-910091-32305' }
     ]
@@ -595,7 +595,7 @@ document.querySelectorAll('[data-bind]').forEach(el => {
   const v = el.dataset.bind.split('.').reduce((o, k) => o && o[k], CONFIG) ?? '';
   el.textContent = v; if (!v && el.tagName === 'P') el.hidden = true;
 });
-document.title = `${CONFIG.groom.short} ♥ ${CONFIG.bride.short} 결혼합니다`;
+document.title = `${CONFIG.groom.short} ♡ ${CONFIG.bride.short} 결혼합니다`;
 
 /* 이미지 슬롯: 비어 있거나 로드 실패 시 자리표시자 (필터 없음 = 원본 색감) */
 document.querySelectorAll('[data-slot]').forEach(el => {

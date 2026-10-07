@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>이수현 ♥ 임형재 결혼식에 초대합니다</title>
+<title>이수현 ♡ 임형재 결혼식에 초대합니다</title>
 <meta name="description" content="2027년 1월 23일 토요일 오전 11시 KU컨벤션웨딩홀">
-<meta property="og:title" content="수현 ♥ 형재 결혼합니다">
+<meta property="og:title" content="수현 ♡ 형재 결혼합니다">
 <meta property="og:description" content="2027년 1월 23일 토요일 오전 11시 KU컨벤션웨딩홀">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://suhyeon-hyeongjae.github.io/wedding/design3/">
-<meta property="og:image" content="https://suhyeon-hyeongjae.github.io/wedding/design3/share.jpg">
+<meta property="og:image" content="https://suhyeon-hyeongjae.github.io/wedding/design3/share-wide.jpg">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="1200">
+<meta property="og:image:height" content="630">
 <style>
   /* Pretendard (첨부 폰트, 한글 2,350자 서브셋) */
   @font-face{font-family:"Pretendard"; font-weight:300; font-display:swap;
@@ -174,6 +174,13 @@
     color:#4a4a4a;
     white-space:nowrap;
   }
+  .hero-head{text-align:center;}
+  .hero-names{
+    margin-top:clamp(12px,3.2vw,16px);
+    font-size:clamp(15px,4vw,17px); font-weight:400; color:#2b2b2b;
+    letter-spacing:.32em; margin-right:-.32em;
+  }
+  .hero-names .dot{display:inline-block; margin:0 .08em; color:#9a9a9a;}
   .hero-stamps{display:flex; gap:clamp(8px,2.6vw,14px); transform:translateY(-3.5svh);}   /* 우표만 살짝 위로 (390×844 기준 약 30px) */
   /* 한 장 너비: 화면 너비 기준과 화면 높이 기준 중 작은 값 */
   .hero-stamp{width:min(170px, calc((100vw - 46px) / 2), calc(40svh * 3 / 4));   /* 170px, 아주 좁은 화면에서만 자동 축소 */}
@@ -453,6 +460,8 @@
     text-align:center;
   }
   .sec + .sec{padding-top:clamp(24px,6vw,40px);}
+  /* 안내(notice) 이후 섹션 사이 여백을 넓힘 (원래 24~56px) */
+  .notice ~ .sec{padding-top:clamp(72px,18vw,104px);}
   .sec-mark{display:block; width:18px; height:18px; margin:0 auto clamp(56px,14vw,80px); color:#2b2b2b;}
   .sec-label{
     font-size:clamp(12px,3.3vw,14px); font-weight:400;
@@ -534,6 +543,10 @@
   .rsvp-pop .rsvp-env{width:76px; margin:24px auto 22px;}
   .rsvp-pop .sec-text{font-size:14px; line-height:1.8; font-weight:300;}
   .rsvp-pop .sheet-actions{margin-top:26px;}
+  .rsvp-pop-when{margin:22px auto 0; padding-top:18px; border-top:1px solid rgba(0,0,0,.1); display:grid; gap:6px; font-size:13px; line-height:1.6;}
+  .rsvp-pop-when div{display:flex; justify-content:center; gap:10px;}
+  .rsvp-pop-when dt{color:#8a8a8a; font-weight:400;}
+  .rsvp-pop-when dd{margin:0; color:#2b2b2b; font-weight:400;}
   .sheet-actions button:focus{outline:none;}
   .sheet-actions button:focus-visible{outline:1px solid var(--ink); outline-offset:2px;}
 
@@ -717,7 +730,7 @@
 
 <main id="main">
   <section class="hero" aria-label="메인">
-    <p class="hero-head">WE ARE GETTING MARRIED</p>
+    <div class="hero-head"><p>WE ARE GETTING MARRIED</p><p class="hero-names">이수현<span class="dot" aria-hidden="true">·</span>임형재</p></div>
     <div class="hero-stamps">
       <div class="hero-stamp"><div class="stamp"><div class="stamp-photo">
         <img id="heroLeft" alt="이수현, 임형재 웨딩 사진">
@@ -853,7 +866,6 @@
             <path d="M42 34 C44 18 55 12 60 19 C65 27 53 34 43 37Z"/>
             <path d="M43 39 C55 36 66 41 63 49 C60 57 49 50 43 41Z"/>
             <path d="M40 40 C36 52 27 58 22 52 C17 45 29 40 39 39Z"/>
-            <path d="M41 39 C42 47 41 55 38 58 C36 52 38 45 41 39Z" stroke-width="1"/>
           </g>
         </svg>
         </div>
@@ -919,6 +931,10 @@
         <path d="M2 2 L60 45 L118 2Z" fill="#f4efe5"/>
       </svg>
       <div class="sec-text"><p>참석 여부를 미리 전달해 주시면<br>저희가 더욱 정성껏 준비하겠습니다</p></div>
+      <dl class="rsvp-pop-when">
+        <div><dt>일시</dt><dd>2027년 1월 23일 토요일 오전 11시</dd></div>
+        <div><dt>장소</dt><dd>KU컨벤션웨딩홀</dd></div>
+      </dl>
       <div class="sheet-actions">
         <button type="button" class="btn-ghost" id="rsvpPopClose">닫기</button>
         <button type="button" class="btn-solid" id="rsvpPopGo">참석 의사 전달하기</button>
@@ -1015,14 +1031,14 @@
     // ───── 연락처: 번호만 여기서 바꾸면 됩니다 ─────
     var CONTACTS = [
       { side:'신랑측', people:[
-        { role:'신랑',   name:'이수현', tel:'010-0000-0000' },
-        { role:'아버지', name:'이철근', tel:'010-0000-0000' },
-        { role:'어머니', name:'김경자', tel:'010-0000-0000' }
+        { role:'신랑',   name:'이수현', tel:'010-2721-3354' },
+        { role:'아버지', name:'이철근', tel:'010-5214-1328' },
+        { role:'어머니', name:'김경자', tel:'010-2963-3354' }
       ]},
       { side:'신부측', people:[
-        { role:'신부',   name:'임형재', tel:'010-0000-0000' },
-        { role:'아버지', name:'임채홍', tel:'010-0000-0000' },
-        { role:'어머니', name:'문우심', tel:'010-0000-0000' }
+        { role:'신부',   name:'임형재', tel:'010-3262-7295' },
+        { role:'아버지', name:'임채홍', tel:'010-3161-5835' },
+        { role:'어머니', name:'문우심', tel:'010-8233-5835' }
       ]}
     ];
     var ICON_CALL = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h3l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v3a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg>';
@@ -1112,12 +1128,12 @@
     // 계좌번호
     var ACCOUNTS = [
       { side:'신랑측 계좌번호', people:[
-        { role:'신랑',   name:'이수현', bank:'', num:'' },
+        { role:'신랑',   name:'이수현', bank:'신한', num:'110-427-145440' },
         { role:'아버지', name:'이철근', bank:'SC제일', num:'779-20-300008' },
         { role:'어머니', name:'김경자', bank:'농협', num:'82103252-018811' }
       ]},
       { side:'신부측 계좌번호', people:[
-        { role:'신부',   name:'임형재', bank:'', num:'' },
+        { role:'신부',   name:'임형재', bank:'하나', num:'133-910505-41307' },
         { role:'아버지', name:'임채홍', bank:'국민', num:'557301-04-305024' },
         { role:'어머니', name:'문우심', bank:'하나', num:'717-910091-32305' }
       ]}
@@ -1261,7 +1277,7 @@
           Kakao.Share.sendDefault({
             objectType:'feed',
             content:{ title:SHARE_TITLE, description:SHARE_DESC,
-              imageUrl: new URL('share.jpg', SHARE_URL).href, imageWidth:1200, imageHeight:1200,
+              imageUrl: new URL('share-wide.jpg', SHARE_URL).href, imageWidth:1200, imageHeight:630,
               link:{ mobileWebUrl:SHARE_URL, webUrl:SHARE_URL } },
             buttons:[{ title:'청첩장 보기', link:{ mobileWebUrl:SHARE_URL, webUrl:SHARE_URL } }]
           });
