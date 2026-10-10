@@ -1084,5 +1084,51 @@ async function copyText(t) {
 let toastTimer;
 function toast(msg) { const t = $('#toast'); t.textContent = msg; t.classList.add('show'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('show'), 1800); }
 </script>
+<!-- 컴퓨터에서 연락하기: 전화·문자 버튼을 누르면 번호를 보여 주고 복사할 수 있게 -->
+<style>
+.pcn-bg{position:fixed;inset:0;z-index:9998;background:rgba(30,30,28,.35);display:none;align-items:center;justify-content:center;padding:20px}
+.pcn-bg.on{display:flex}
+.pcn{width:min(300px,100%);background:#fff;color:#222;border-radius:12px;padding:26px 22px 18px;text-align:center;box-shadow:0 12px 40px rgba(0,0,0,.18);font-family:inherit}
+.pcn .pcn-k{font-size:13px;color:#8a8a84;letter-spacing:.02em}
+.pcn .pcn-n{margin-top:6px;font-size:15px;font-weight:600}
+.pcn .pcn-num{margin-top:10px;font-size:22px;font-weight:600;letter-spacing:.04em;font-variant-numeric:tabular-nums;user-select:all}
+.pcn .pcn-h{margin-top:10px;font-size:12px;color:#9a9a94;line-height:1.6}
+.pcn .pcn-b{margin-top:18px;display:flex;gap:8px}
+.pcn .pcn-b button{flex:1;height:42px;border-radius:8px;font:inherit;font-size:14px;cursor:pointer;border:1px solid rgba(0,0,0,.15);background:#fff;color:#333}
+.pcn .pcn-b button.pcn-c{background:#2b2b2b;border-color:#2b2b2b;color:#fff}
+</style>
+<div class="pcn-bg" id="pcnBg" role="dialog" aria-modal="true" aria-labelledby="pcnName"><div class="pcn">
+  <p class="pcn-k" id="pcnKind">전화</p><p class="pcn-n" id="pcnName"></p><p class="pcn-num" id="pcnNum"></p>
+  <p class="pcn-h">컴퓨터에서는 바로 연결되지 않아요.<br>휴대폰으로 이 번호에 연락해 주세요.</p>
+  <div class="pcn-b"><button type="button" id="pcnClose">닫기</button><button type="button" class="pcn-c" id="pcnCopy">번호 복사</button></div>
+</div></div>
+<script>(function(){
+  var ua=navigator.userAgent||'';
+  var mobile=/Android|iPhone|iPad|iPod|Mobile|KAKAOTALK/i.test(ua)||(navigator.maxTouchPoints>1&&/Macintosh/.test(ua))||(window.matchMedia&&matchMedia('(pointer:coarse)').matches);
+  if(mobile) return;
+  var bg=document.getElementById('pcnBg'),num='';
+  function fmt(n){n=n.replace(/[^0-9]/g,'');return n.length===11?n.replace(/(\d{3})(\d{4})(\d{4})/,'$1-$2-$3'):n.length===10?n.replace(/(\d{3})(\d{3})(\d{4})/,'$1-$2-$3'):n;}
+  function close(){bg.classList.remove('on');}
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href^="tel:"],a[href^="sms:"]'); if(!a) return;
+    e.preventDefault(); e.stopPropagation();
+    var href=a.getAttribute('href'); num=fmt(href.replace(/^(tel|sms):/,''));
+    var label=(a.getAttribute('aria-label')||'').replace(/에게\s*(전화|문자).*$/,'');
+    document.getElementById('pcnKind').textContent=/^sms:/.test(href)?'문자 보내기':'전화하기';
+    document.getElementById('pcnName').textContent=label;
+    document.getElementById('pcnNum').textContent=num;
+    document.getElementById('pcnCopy').textContent='번호 복사';
+    bg.classList.add('on');
+  },true);
+  document.getElementById('pcnClose').onclick=close;
+  bg.addEventListener('click',function(e){if(e.target===bg)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  document.getElementById('pcnCopy').onclick=function(){
+    var b=this,done=function(){b.textContent='복사되었습니다';};
+    if(navigator.clipboard&&window.isSecureContext){navigator.clipboard.writeText(num).then(done,fb);}else fb();
+    function fb(){var t=document.createElement('textarea');t.value=num;t.style.cssText='position:fixed;opacity:0';document.body.appendChild(t);t.select();try{document.execCommand('copy');}catch(_){}t.remove();done();}
+  };
+})();</script>
+
 </body>
 </html>
