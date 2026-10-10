@@ -2,14 +2,24 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<!-- 확대 금지: 두 손가락 확대·두 번 탭 확대 막기 (아이폰은 viewport 설정을 무시해서 스크립트로 한 번 더 막음) -->
+<style>html,body{touch-action:pan-x pan-y;-ms-touch-action:pan-x pan-y}a,button,input,textarea,select,label{touch-action:manipulation}</style>
+<script>(function(){
+  var no=function(e){e.preventDefault();};
+  ['gesturestart','gesturechange','gestureend'].forEach(function(t){document.addEventListener(t,no,{passive:false});});
+  document.addEventListener('touchmove',function(e){if(e.touches&&e.touches.length>1)e.preventDefault();},{passive:false});
+  var last=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n-last<300&&!(e.target.closest&&e.target.closest('a,button,label,input,textarea,select,[role=button]')))e.preventDefault();last=n;},{passive:false});
+  document.addEventListener('wheel',function(e){if(e.ctrlKey)e.preventDefault();},{passive:false});
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].indexOf(e.key)>-1)e.preventDefault();});
+})();</script>
 <title>수현 ♡ 형재 결혼합니다 · 2027. 01. 23</title>
 <meta name="description" content="2027년 1월 23일 토요일 오전 11시 KU컨벤션웨딩홀">
 <meta property="og:title" content="수현 ♡ 형재 결혼합니다">
 <meta property="og:description" content="2027. 01. 23 (SAT) 11AM KU컨벤션웨딩홀">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://suhyeon-hyeongjae.github.io/wedding/">
-<meta property="og:image" content="https://suhyeon-hyeongjae.github.io/wedding/assets/img/og-v6.jpg">
+<meta property="og:image" content="https://suhyeon-hyeongjae.github.io/wedding/assets/img/og-v7.jpg">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
@@ -1206,7 +1216,7 @@ go(0);
           content: {
             title: '수현 ♡ 형재 결혼합니다',
             description: '2027. 01. 23 (SAT) 11AM KU컨벤션웨딩홀',
-            imageUrl: URL_ + 'assets/img/og-v6.jpg', imageWidth: 1200, imageHeight: 630,
+            imageUrl: URL_ + 'assets/img/og-v7.jpg', imageWidth: 1200, imageHeight: 630,
             link: { mobileWebUrl: URL_, webUrl: URL_ }
           },
           buttons: [{ title: '청첩장 보기', link: { mobileWebUrl: URL_, webUrl: URL_ } }]

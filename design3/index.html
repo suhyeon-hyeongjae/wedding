@@ -2,7 +2,17 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<!-- 확대 금지: 두 손가락 확대·두 번 탭 확대 막기 (아이폰은 viewport 설정을 무시해서 스크립트로 한 번 더 막음) -->
+<style>html,body{touch-action:pan-x pan-y;-ms-touch-action:pan-x pan-y}a,button,input,textarea,select,label{touch-action:manipulation}</style>
+<script>(function(){
+  var no=function(e){e.preventDefault();};
+  ['gesturestart','gesturechange','gestureend'].forEach(function(t){document.addEventListener(t,no,{passive:false});});
+  document.addEventListener('touchmove',function(e){if(e.touches&&e.touches.length>1)e.preventDefault();},{passive:false});
+  var last=0;document.addEventListener('touchend',function(e){var n=Date.now();if(n-last<300&&!(e.target.closest&&e.target.closest('a,button,label,input,textarea,select,[role=button]')))e.preventDefault();last=n;},{passive:false});
+  document.addEventListener('wheel',function(e){if(e.ctrlKey)e.preventDefault();},{passive:false});
+  document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&['+','-','=','0'].indexOf(e.key)>-1)e.preventDefault();});
+})();</script>
 <title>이수현 ♡ 임형재 결혼식에 초대합니다</title>
 <meta name="description" content="2027년 1월 23일 토요일 오전 11시 KU컨벤션웨딩홀">
 <meta property="og:title" content="수현 ♡ 형재 결혼합니다">
@@ -647,17 +657,17 @@
   @keyframes caret{50%{opacity:0}}
   .like-btn{
     margin-top:clamp(36px,9vw,48px);
-    display:inline-flex; align-items:center; gap:10px;
+    display:inline-flex; align-items:center; justify-content:center; gap:10px; min-width:110px;
     font:inherit; font-size:15px; color:#3a3a3a;
     background:rgba(255,255,255,.55); border:1px solid rgba(0,0,0,.18); border-radius:999px;
     padding:12px 30px; cursor:pointer;
   }
-  .like-btn svg{width:20px; height:20px; fill:none; stroke:#2b2b2b; stroke-width:1.6; stroke-linejoin:round; transition:fill .2s;}
-  .like-btn[aria-pressed="true"] svg{fill:#2b2b2b;}
+  .like-btn svg{width:20px; height:20px; fill:none; stroke:#c9c6ba; stroke-width:1.6; stroke-linejoin:round; transition:fill .2s;}
+  .like-btn[aria-pressed="true"] svg{fill:#c8474a; stroke:#c8474a;}   /* 디자인2와 같은 빨간 하트 */
   .like-btn.pop svg{animation:like-pop .4s cubic-bezier(.2,.7,.2,1.4);}
   @keyframes like-pop{0%{transform:scale(1)} 40%{transform:scale(1.35)} 100%{transform:scale(1)}}
   .like-btn:focus-visible{outline:1px solid var(--ink); outline-offset:3px;}
-  .like-count{min-width:1.5em; text-align:left; font-variant-numeric:tabular-nums;}
+  .like-count{min-width:1ch; text-align:center; font-variant-numeric:tabular-nums;}
   .sign{margin-top:clamp(28px,7vw,36px); font-size:15px; font-weight:400; letter-spacing:.04em; color:#2b2b2b;}
   .sign .dd-heart{width:.67em; height:.67em;}
   .sign i{font-style:normal; color:#8a8a8a; margin:0 .3em;}
