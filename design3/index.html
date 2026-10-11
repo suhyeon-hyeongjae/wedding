@@ -1022,8 +1022,8 @@
   <!-- 다음 단계: 본문 섹션 -->
 </main>
 
-<!-- 배경음악: index.html과 같은 폴더에 music.mp3를 넣으면 재생됩니다 -->
-<audio id="bgmAudio" src="music.mp3" loop preload="none"></audio>
+<!-- 배경음악: index.html과 같은 폴더의 music-v3.mp3 -->
+<audio id="bgmAudio" src="music-v3.mp3" loop preload="metadata"></audio>
 <button class="bgm" id="bgmBtn" type="button" aria-label="배경음악 켜기" aria-pressed="false">
   <svg class="i-play" viewBox="0 0 16 16" aria-hidden="true"><path d="M4 2.5v11l9-5.5z"/></svg>
   <svg class="i-pause" viewBox="0 0 16 16" aria-hidden="true"><rect x="3.5" y="2.5" width="3" height="11" rx=".6"/><rect x="9.5" y="2.5" width="3" height="11" rx=".6"/></svg>
@@ -1429,7 +1429,7 @@
       cover.classList.add('is-leaving');
       document.body.style.overflow = 'auto';
       btn.classList.add('is-ready');
-      play();   // 탭하는 순간 음악 시작 (휴대폰 자동재생 제한 회피)
+      // 음악은 꺼진 상태로 시작: 재생 버튼을 눌렀을 때만 재생
     }
     cover.addEventListener('click', enter);
     document.getElementById('enter').addEventListener('keydown', function(e){
