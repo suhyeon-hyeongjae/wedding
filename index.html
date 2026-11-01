@@ -1245,8 +1245,8 @@ go(0);
 (function(){
   // 정해지면 채우기: query는 지도에서 검색할 장소 이름(비어 있으면 지도 버튼이 안내만 표시)
   const BUS = {
-    before: { title:'〈출발 지역〉 출발', time:'〈출발 시간〉', place:'〈탑승 장소〉', query:'' },
-    after:  { title:'〈도착 지역〉 행',   time:'〈출발 시간〉', place:'KU컨벤션웨딩홀 앞', query:'KU컨벤션웨딩홀' }
+    before: { title:'광주-서울', time:'오전 6시 20분', place:'예술의전당(구 문화예술회관) 후문', query:'광주예술의전당', naver:'https://naver.me/Gct6wgQa', kakao:'https://map.kakao.com/link/map/693038656' },
+    after:  { title:'서울-광주', time:'당일 안내', place:'KU컨벤션웨딩홀', query:'KU컨벤션웨딩홀', naver:'', kakao:'' }   // naver·kakao: 지도 앱에서 공유한 링크(있으면 그 위치로 바로 열림)
   };
   const tabs = [...document.querySelectorAll('.bus-tab')], panel = $('#busPanel'), info = $('#busInfo');
   const pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0113 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
@@ -1268,7 +1268,7 @@ go(0);
     const b = BUS[key];
     info.innerHTML = `<p class="bi-t">${b.title}</p><dl><dt>시간</dt><dd>${b.time}</dd><dt>장소</dt><dd>${b.place}</dd></dl>
       <div class="bus-maps"><button type="button" data-map="naver">${pin}네이버지도</button><button type="button" data-map="kakao">${pin}카카오맵</button></div>`;
-    info.querySelectorAll('[data-map]').forEach(btn => btn.addEventListener('click', () => openMap(btn.dataset.map, b.query)));
+    info.querySelectorAll('[data-map]').forEach(btn => btn.addEventListener('click', () => { const link = b[btn.dataset.map]; if (link) { const a = document.createElement('a'); a.href = link; a.target = '_blank'; a.rel = 'noopener'; a.click(); return; } openMap(btn.dataset.map, b.query); }));
   }
   tabs.forEach(tab => tab.addEventListener('click', () => {
     const on = tab.getAttribute('aria-expanded') === 'true';
